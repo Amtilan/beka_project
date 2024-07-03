@@ -22,11 +22,20 @@ async def upload_file(file: UploadFile = File(...)):
         file_name=file.filename,
         file_location=f"files/{file.filename}",
     )
+    
     async with aiofiles.open(file_worker.file_location, 'wb') as out_file:
         content = await file.read()
         await out_file.write(content)
+    
     openchat=OpenChatAI()
     file_worker.content=openchat.response(file=file_worker)
+    
+    try:
+        os.remove(file_worker.file_location)
+    except Exception as e:
+        return {"info": f"Ошибка при удалении файла: {str(e)}"}
+    
+    
     return {"info": 
         f"file '{file_worker.file_name}' saved at '{file_worker.file_location}'",
         f"response":{file_worker.content}    
