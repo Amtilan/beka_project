@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "beka-project"
+version = "0.1.0"
+description = ""
+authors = ["Amtilan <149930972+Amtilan@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["all"], version = "^0.111.0"}
+python-dotenv = "^1.0.1"
+aiofiles = "^24.1.0"
+python-multipart = "^0.0.9"
+django-environ = "^0.11.2"
+openai = "^1.35.9"
+pandas = "^2.2.2"
+pypdf2 = "^3.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
